@@ -234,41 +234,46 @@ if __name__ == "__main__":
     STARGAN = True
 
     # Settings
-    # summary_dir = "../res/HIGHLIGHTS_DIV/Summaries/PacMan_FearGhost2_3"
+    summary_dir = "../res/HIGHLIGHTS_DIV/Summaries/PacMan_FearGhost2_3"
     # summary_dir = "../res/HIGHLIGHTS_DIV/Summaries/Pacman_Ingame"
     # summary_dir = "../res/HIGHLIGHTS_DIV/Summaries/Pacman_PowerPill"
     # summary_dir = "../res/HIGHLIGHTS_DIV/Summaries/SpacInvaders_Abl"
-    summary_dir = "../res/HIGHLIGHTS_DIV/Summaries/SpacInvaders"
+    # summary_dir = "../res/HIGHLIGHTS_DIV/Summaries/SpacInvaders"
 
-    nb_actions = 6  # 5 for Pacman, 6 for SpaceInvader
-    img_size = 160  # 176 for Pacman, 160 for SpaceInvader
-    agent_latent = 32  # 512 for ACER, 256 for DQN, 32 for Olson Agents
-    is_pacman = False
-    cf_summary_dir = "../res/HIGHLIGHTS_DIV/CF_Summaries/SpacInvaders"
+    nb_actions = 5  # 5 for Pacman, 6 for SpaceInvader
+    # nb_actions = 6  # 5 for Pacman, 6 for SpaceInvader
+    img_size = 176  # 176 for Pacman, 160 for SpaceInvader
+    # img_size = 160  # 176 for Pacman, 160 for SpaceInvader
+    agent_latent = 512  # 512 for ACER, 256 for DQN, 32 for Olson Agents
+    # agent_latent = 32  # 512 for ACER, 256 for DQN, 32 for Olson Agents
+    is_pacman = True
+    # cf_summary_dir = "../res/HIGHLIGHTS_DIV/CF_Summaries/SpacInvaders"
+    cf_summary_dir = "../res/HIGHLIGHTS_DIV/CF_Summaries/MyPacMan"
 
-    # model_name = "PacMan_FearGhost2_3"
+    model_name = "PacMan_FearGhost2_3"
     # model_name = "PacMan_Ingame"
     # model_name = "PacMan_PowerPill"
     # model_name = "SpaceInvaders_Abl"
-    model_name = "SpaceInvaders"
+    # model_name = "SpaceInvaders"
 
     # The Fear Ghost agent uses a pytorch version of the agent for the Olson CF generation
     # but the baselines model for generating HIGHLIGHTS. Thats why we have to differentiate between the agents
-    # olson_agent_path = "../res/agents/ACER_PacMan_FearGhost2_cropped_5actions_40M_3.pt"
+    olson_agent_path = "../res/agents/ACER_PacMan_FearGhost2_cropped_5actions_40M_3.pt"
     # olson_agent_path = "../res/agents/Pacman_Ingame_cropped_5actions_5M.h5"
     # olson_agent_path = "../res/agents/Pacman_PowerPill_cropped_5actions_5M.h5"
     # olson_agent_path = "../res/agents/abl_agent.tar"
-    olson_agent_path = "../res/agents/abl_none.tar"
+    # olson_agent_path = "../res/agents/abl_none.tar"
 
     if GENERATE_NEW_HIGHLIGHTS:
-        env_name = "SpaceInvadersNoFrameskip-v4"  # "MsPacmanNoFrameskip-v4"
-        # agent_type = "acer"
-        # agent_path = r"../res/agents/ACER_PacMan_FearGhost2_cropped_5actions_40M_3"
+        # env_name = "SpaceInvadersNoFrameskip-v4"  # "MsPacmanNoFrameskip-v4"
+        env_name = "MsPacmanNoFrameskip-v4"  # "MsPacmanNoFrameskip-v4"
+        agent_type = "acer"
+        agent_path = r"../res/agents/ACER_PacMan_FearGhost2_cropped_5actions_40M_3"
         # agent_type = "keras"
         # agent_path = r"../res/agents/Pacman_Ingame_cropped_5actions_5M.h5"
         # agent_path = r"../res/agents/Pacman_PowerPill_cropped_5actions_5M.h5"
-        agent_type = "olson"
-        agent_path = "../res/agents/abl_none.tar"
+        # agent_type = "olson"
+        # agent_path = "../res/agents/abl_none.tar"
         num_frames = 5
         interval_size = 50
         num_simulations = 50

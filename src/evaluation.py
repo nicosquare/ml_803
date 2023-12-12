@@ -275,7 +275,7 @@ class Evaluator:
 
 if __name__ == "__main__":
     restrict_tf_memory()
-    GENERATE_NEW_RESULTS = False
+    GENERATE_NEW_RESULTS = True
 
     if GENERATE_NEW_RESULTS:
         # Settings
@@ -286,7 +286,7 @@ if __name__ == "__main__":
         img_size = 176
         agent_file = "../res/agents/ACER_PacMan_FearGhost2_cropped_5actions_40M_3"
         agent_type = "acer"
-        model_type = "olson"
+        # model_type = "olson"
         ablate_agent = False
         agent_latent = 512 # 256 for deepq, 512 for ACER
         ## Spaceinvader
@@ -296,7 +296,7 @@ if __name__ == "__main__":
         # img_size = 160
         # agent_file = "../res/agents/abl_agent.tar"
         # agent_type = "olson"
-        # model_type = "stargan"
+        model_type = "stargan"
         # ablate_agent = True
         # agent_latent = 32
         if agent_type == "deepq":
@@ -316,18 +316,26 @@ if __name__ == "__main__":
             raise NotImplementedError("not yet implemented")
 
         # Create the Evaluator
-        evaluator = Evaluator(agent, "../res/datasets/ACER_PacMan_FearGhost2_cropped_5actions_40M_3_Unique/test", env_name,
+        # evaluator = Evaluator(agent, "../res/datasets/ACER_PacMan_FearGhost_cropped_5actions_40M_3_Unique/test", env_name,
+        #                       img_size=img_size, agent_type=agent_type, ablate_agent=ablate_agent)
+        evaluator = Evaluator(agent, "../res/datasets/PacMan_FearGhost_cropped_5actions_Unique/test", env_name,
                               img_size=img_size, agent_type=agent_type, ablate_agent=ablate_agent)
 
         if model_type == "stargan":
+
             # Load a StarGAN generator
             generator = Generator(c_dim=nb_actions, channels=3).cuda()
-            generator.load_state_dict(torch.load("../res/models/PacMan_FearGhost2_3/models/200000-G.ckpt",
+
+            # generator.load_state_dict(torch.load("../res/models/PacMan_FearGhost2_3/models/200000-G.ckpt",
+            #                                      map_location=lambda storage, loc: storage))
+
+            generator.load_state_dict(torch.load("../res/models/PacMan_FearGhost_cropped_5actions/models/200000-G.ckpt",
                                                  map_location=lambda storage, loc: storage))
 
             # Evaluate StarGAN
             cm, df = evaluator.evaluate_stargan(generator)
-            evaluator.save_results("../res/results/PacMan_FearGhost2_3")
+            # evaluator.save_results("../res/results/PacMan_FearGhost2_3")
+            evaluator.save_results("../res/results/PacMan_FearGhost_cropped_5actions")
 
         if model_type == "olson":
             # Load all relevant models that are necessary for the CF generation of Olson et al. via load_olson_models()

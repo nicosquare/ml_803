@@ -57,6 +57,10 @@ def train_star_gan(dataset, name, image_size=176, image_channels=3, c_dim=5, bat
     main(config)
 
 
+# if __name__ == "__main__":
+#     train_star_gan("SpaceInvaders_Abl", "SpaceInvaders_Abl", image_size=160, image_channels=3, c_dim=6,
+#                    batch_size=16, agent_file=None)
+
 if __name__ == "__main__":
-    train_star_gan("SpaceInvaders_Abl", "SpaceInvaders_Abl", image_size=160, image_channels=3, c_dim=6,
-                   batch_size=16, agent_file=None)
+  train_star_gan("PacMan_FearGhost_cropped_5actions", "PacMan_FearGhost_cropped_5actions", image_size=176, image_channels=3, c_dim=5,
+                 batch_size=16, agent_file= None)

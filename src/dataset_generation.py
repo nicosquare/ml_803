@@ -265,7 +265,8 @@ def _generate_set(size, path, env_wrapper, agent, agent_type, domains, noop_rang
 
 
 def _save_unique_samples(set_path, old_dataset_path, domain):
-    unique_samples, _, _ = get_uniques(os.path.join(old_dataset_path, set_path.split("\\")[-1], domain))
+    # unique_samples, _, _ = get_uniques(os.path.join(old_dataset_path, set_path.split("\\")[-1], domain))
+    unique_samples, _, _ = get_uniques(os.path.join(old_dataset_path, set_path.split("/")[-1], domain))
     for i, unique_sample in enumerate(unique_samples):
         _save_image(unique_sample, os.path.join(set_path, domain, f"{i}.png"))
 
@@ -311,11 +312,11 @@ if __name__ == "__main__":
     # Settings
     env_name = "MsPacmanNoFrameskip-v4"
     # agent = keras.models.load_model("../res/agents/PacMan_Ingame_cropped_5actions_5M.h5")
-    agent = load_baselines_model(r"../res/agents/ACER_PacMan_FearGhost_cropped_5actions_40M", num_actions=5, num_env=1)
+    agent = load_baselines_model(r"res/agents/ACER_PacMan_FearGhost2_cropped_5actions_40M_3", num_actions=5, num_env=1)
     agent_type = "acer"
     nb_domains = 5
     nb_samples = 400000
-    dataset_path = "../res/datasets/PacMan_FearGhost_cropped_5actions"
+    dataset_path = "res/datasets/PacMan_FearGhost_cropped_5actions"
     unique_dataset_path = dataset_path + "_Unique"
     domains = list(map(str, np.arange(nb_domains)))
 
