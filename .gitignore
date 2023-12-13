@@ -152,3 +152,5 @@ fabric.properties
 
 *.rar
 roms/*
+models/*
+

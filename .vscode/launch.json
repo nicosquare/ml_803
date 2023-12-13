@@ -13,7 +13,11 @@
             "justMyCode": false,
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
-            }
+            },
+            "args": [
+                "--trained_vae",
+                "--trained_action_encoder",
+            ]
         }
     ]
 }
